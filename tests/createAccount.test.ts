@@ -1,16 +1,13 @@
 import { composeAPI } from '../src/composeAPI';
 import { APIHost, APIPort, defaultAddress } from './config';
 
-let account: any;
-
-const createAccount = async (value = 0) => {
-  const engineAPI = composeAPI(APIHost, APIPort, defaultAddress);
-  account = await engineAPI.createAccount('password', value);
-};
+const engineAPI = composeAPI(APIHost, APIPort, defaultAddress);
 
 describe('Generate account', () => {
-  beforeAll(() => {
-    createAccount();
+  let account: any;
+
+  beforeAll(async () => {
+    account = await engineAPI.createAccount('password');
   });
 
   test('Address format MUST be same as 0x<40 hex character>', () => {
@@ -24,8 +21,10 @@ describe('Generate account', () => {
 });
 
 describe('Generate account wiht initialize value', () => {
-  beforeAll(() => {
-    createAccount(1000);
+  let account: any;
+
+  beforeAll(async () => {
+    account = await engineAPI.createAccount('password', 1000);
   });
 
   test('Address format MUST be same as 0x<40 hex character>', () => {

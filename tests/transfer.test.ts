@@ -11,15 +11,18 @@ describe('Transfer', () => {
   beforeAll(async () => {
     sender = await engineAPI.createAccount('password', 1000);
     receiver = await engineAPI.createAccount('password');
-    receipt = await engineAPI.transfer(
-      sender.keystore,
-      'password',
-      receiver.address,
-      900,
-    );
+
+    const keystore = sender.keystore;
+    const password = 'password';
+    const address = receiver.address;
+    const value = 900;
+
+    const engineAPI2 = composeAPI(APIHost, APIPort, sender.address);
+
+    receipt = await engineAPI2.transfer(keystore, password, address, value);
   });
 
-  test('Transfer return format MUST be object', async () => {
+  test('Transfer return format MUST be object', () => {
     expect(typeof(receipt)).toBe('object');
   });
 
@@ -42,7 +45,7 @@ describe('Transfer', () => {
 
   test('Receiver balance MUST has 900', async () => {
     const receiverAccount = await engineAPI.fetchAccount(receiver.address);
-    expect(receiverAccount.balance).toBe(100);
+    expect(receiverAccount.balance).toBe(900);
   });
 
 });

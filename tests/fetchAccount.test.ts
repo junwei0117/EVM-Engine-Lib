@@ -1,11 +1,12 @@
 import { composeAPI } from '../src/composeAPI';
 import { APIHost, APIPort, defaultAddress } from './config';
 
+const engineAPI = composeAPI(APIHost, APIPort, defaultAddress);
+
 describe('Fetch Account', () => {
   let account: any;
 
   beforeAll(async () => {
-    const engineAPI = composeAPI(APIHost, APIPort, defaultAddress);
     account = await engineAPI.fetchAccount(defaultAddress);
   });
 
