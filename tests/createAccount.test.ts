@@ -1,7 +1,7 @@
 import { composeAPI } from '../src/composeAPI';
-import { APIHost, APIPort, defaultAddress } from './config';
+import { APIHost, APIPort, genesisAddress } from './config';
 
-const engineAPI = composeAPI(APIHost, APIPort, defaultAddress);
+const engineAPI = composeAPI(APIHost, APIPort, genesisAddress);
 
 describe('Generate account', () => {
   let account: any;
@@ -24,7 +24,7 @@ describe('Generate account wiht initialize value', () => {
   let account: any;
 
   beforeAll(async () => {
-    account = await engineAPI.createAccount('password', 1000);
+    account = await engineAPI.createAccount('password', 10);
   });
 
   test('Address format MUST be same as 0x<40 hex character>', () => {

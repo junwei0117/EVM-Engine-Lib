@@ -1,6 +1,6 @@
 import { V3JSONKeyStore } from 'evm-lite-core';
 
-export const createAccount = (evmlc: any) => {
+export const interactContract = (evmlc: any) => {
   return async (
     keystore: V3JSONKeyStore,
     password: string,

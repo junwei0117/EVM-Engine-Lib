@@ -57,9 +57,6 @@ const createCompileObject = (name: string, content: string) => {
 const loadRemoteCompiler = (version: string): Promise<any> => {
   const load = new Promise((resolve, reject) => {
     solc.loadRemoteVersion(version, (error: any, compiler: any) => {
-      if (error) {
-        return reject('Failed to load remote solidity compiler');
-      }
       resolve(compiler);
     });
   });

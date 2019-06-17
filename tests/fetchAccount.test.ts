@@ -1,17 +1,17 @@
 import { composeAPI } from '../src/composeAPI';
-import { APIHost, APIPort, defaultAddress } from './config';
+import { APIHost, APIPort, genesisAddress } from './config';
 
-const engineAPI = composeAPI(APIHost, APIPort, defaultAddress);
+const engineAPI = composeAPI(APIHost, APIPort, genesisAddress);
 
 describe('Fetch Account', () => {
   let account: any;
 
   beforeAll(async () => {
-    account = await engineAPI.fetchAccount(defaultAddress);
+    account = await engineAPI.fetchAccount(genesisAddress);
   });
 
   test('Address MUST same as account address', () => {
-    expect((account.address).toUpperCase()).toBe(defaultAddress);
+    expect((account.address).toUpperCase()).toBe(genesisAddress);
   });
 
   test('Balance format MUST be string', () => {
