@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["node", "jest"],
+    "types": ["node"],
     "lib": ["dom", "es2015"],
     "noImplicitThis": true,
     "strict": true,
@@ -8,8 +8,8 @@
     "sourceMap": true,
     "moduleResolution": "node",
     "baseUrl": ".",
-    "paths": {
-      "*": ["./src"]
-    }
-  }
+    "outDir": "lib",
+    "declarationDir": "typings"
+  },
+  "include": ["src"]
 }
