@@ -46,18 +46,44 @@ const engineAPI = composeAPI(APIHost, APIPort, defaultAddress);
  #### .deployContract(keystore, password, contract, name, version, parameters)
  #### .interactContract(keystore, password, address, abi, method, parameters, value)
 
- ### .composeAPI(APIHost, APIPort, defaultAddress)
- | Name   | Type   | Default  | Description                                 |
-| ------- | ------ | -------  | ------------------------------------------- | 
-| host    | string | password | Password of the account.      |
-| port    | number | 0        | Initial value of the account. |
-| address | string | 0        | Initial value of the account. |
-
  ### .createAccount(password, value)
- | Name      | Type   | Default  | Description                                 |
+| Name      | Type   | Default  | Description                                 |
 | --------- | ------ | -------  | ------------------------------------------- | 
 | password  | string | password | **Optional.** Password of the account.      |
 | value     | number | 0        | **Optional.** Initial value of the account. |
+
+### .fetchAccount(address)
+| Name     | Type   | Description             |
+| -------- | ------ | ----------------------- | 
+| address  | string | address of the account. |
+
+### .transfer(keystore, password, address, value)
+| Name     | Type   | Description                                                                     |
+| -------- | ------ | ------------------------------------------------------------------------------- |
+| address  | string | Address of the sender.                                                          |
+| password | string | Password of the sender account, it will be used for decrpyting the `keystore`.  |
+| keystore | JSON   | Key store of the sender account.                                                |
+| value    | number | Value of currency that will be tranfer from sender account to receiver account. |
+
+### .deployContract(keystore, password, contract, name, version, parameters)
+| Name       | Type   | Description                                 |
+| ---------- | ------ | ------------------------------------------- |
+| keystore   | string | Key store of the contract owner.            |
+| password   | string | Password of the contract owner.             |
+| contract   | string | A contract is written in Solidity language. |
+| name       | string | Contract name.                              |
+| version    | string | Solc version.                               |
+| parameters  | Array  | Parameters of the method that will be used for method arguments. |
+
+### .interactContract(keystore, password, address, abi, method, parameters, value)
+| Name        | Type   | Description                                                      |
+| ----------- | ------ | ---------------------------------------------------------------- |
+| address     | string | Address of the deployed contract                                 |
+| keystore    | JSON   | Key store of the user.                                           |
+| password    | string | Password of the user.                                            |
+| contract    | string | A contract written in Solidity language.                         |
+| method      | string | Method name of the smart contract.                               |
+| parameters  | Array  | Parameters of the method that will be used for method arguments. |
 
 ## Contributing
 
