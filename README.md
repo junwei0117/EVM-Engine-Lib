@@ -38,6 +38,27 @@ const engineAPI = composeAPI(APIHost, APIPort, defaultAddress);
 
 ```
 
+## API Reference
+ #### .composeAPI(APIHost, APIPort, defaultAddress)
+ #### .createAccount(password, value)
+ #### .fetchAccount(address)
+ #### .transfer(keystore, password, address, value)
+ #### .deployContract(keystore, password, contract, name, version, parameters)
+ #### .interactContract(keystore, password, address, abi, method, parameters, value)
+
+ ### .composeAPI(APIHost, APIPort, defaultAddress)
+ | Name   | Type   | Default  | Description                                 |
+| ------- | ------ | -------  | ------------------------------------------- | 
+| host    | string | password | Password of the account.      |
+| port    | number | 0        | Initial value of the account. |
+| address | string | 0        | Initial value of the account. |
+
+ ### .createAccount(password, value)
+ | Name      | Type   | Default  | Description                                 |
+| --------- | ------ | -------  | ------------------------------------------- | 
+| password  | string | password | **Optional.** Password of the account.      |
+| value     | number | 0        | **Optional.** Initial value of the account. |
+
 ## Contributing
 
 ### Bootstrap your environments
