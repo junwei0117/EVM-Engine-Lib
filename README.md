@@ -14,13 +14,13 @@ To install the TangleID library and its dependencies, you can use one of the fol
 Install using [npm](https://www.npmjs.org/):
 
 ```shell
-npm install @v860117/evm-engine-lib
+npm install evm-engine-lib
 ```
 
 or using [yarn](https://yarnpkg.com/):
 
 ```shell
-yarn add @v860117/evm-engine-lib
+yarn add evm-engine-lib
 ```
 
 ## Getting started
