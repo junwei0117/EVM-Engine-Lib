@@ -21,7 +21,7 @@ interface IJSONKeyStore {
 }
 
 export const isAddress = (address: string) => {
-  if (/^(0x)?[0-9a-f]{40}$/.test(address) || /^(0x)?[0-9A-F]{40}$/.test(address)) {
+  if (/^(0x)?[a-zA-Z0-9]{40}$/.test(address) || /^(0X)?[a-zA-Z0-9]{40}$/.test(address)) {
     return true;
   }
   return false;
