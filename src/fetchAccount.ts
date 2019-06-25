@@ -1,7 +1,13 @@
+import { isAddress } from './guards';
+
 export const fetchAccount = (evmlc: any) => {
   return async (address: string) => {
-    const account = await evmlc.accounts.getAccount(address);
+    if (isAddress(address)) {
+      const account = await evmlc.accounts.getAccount(address);
 
-    return account;
+      return account;
+    } else {
+      return Error('Address format error');
+    }
   };
 };

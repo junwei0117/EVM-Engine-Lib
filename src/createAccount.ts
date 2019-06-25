@@ -1,4 +1,5 @@
 import { V3JSONKeyStore } from 'evm-lite-core';
+import { isValue } from './guards';
 
 export const createAccount = (evmlc: any) => {
   return async (password: string, value?: number) => {
@@ -6,8 +7,12 @@ export const createAccount = (evmlc: any) => {
     const address = '0x' + keystore.address;
 
     if (value && value > 0) {
-      const transaction = await evmlc.accounts.prepareTransfer(address, value);
-      await transaction.send();
+      if (isValue(value)) {
+        const transaction = await evmlc.accounts.prepareTransfer(address, value);
+        await transaction.send();
+      } else {
+        return Error('Value must be number');
+      }
     }
 
     return { address, keystore };

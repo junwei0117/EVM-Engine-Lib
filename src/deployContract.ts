@@ -1,6 +1,7 @@
 // @ts-ignore
 import * as solc from 'solc';
 import { V3JSONKeyStore } from 'evm-lite-core';
+import { isKeystore, isSolidity, isParameters } from './guards';
 
 export const deployContract = (evmlc: any) => {
   return async (
@@ -11,14 +12,18 @@ export const deployContract = (evmlc: any) => {
     version: string,
     parameters?: any,
   ) => {
-    const account = await evmlc.accounts.decrypt(keystore, password);
+    if (isKeystore(keystore) && isSolidity(contract) && isParameters(parameters)) {
+      const account = await evmlc.accounts.decrypt(keystore, password);
 
-    const compiled = await compileContract(name, contract, version);
+      const compiled = await compileContract(name, contract, version);
 
-    const contractInstance = await evmlc.contracts.load(compiled.abi, { data: compiled.bytecode });
-    const receipt = await contractInstance.deploy(account, parameters);
+      const contractInstance = await evmlc.contracts.load(compiled.abi, { data: compiled.bytecode });
+      const receipt = await contractInstance.deploy(account, parameters);
 
-    return { address: receipt.options.address.value, abi: compiled.abi, receipt };
+      return { address: receipt.options.address.value, abi: compiled.abi, receipt };
+    } else {
+      return Error('Format Error');
+    }
   };
 };
 
